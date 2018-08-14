@@ -5,24 +5,29 @@
  */
 package com.wlspa.hermesserver.servlet;
 
-import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
-import javax.ejb.Stateless;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.MediaType;
 
 /**
  *
  * @author gionatanG
  */
-@WebService(serviceName = "Event")
-@Stateless()
+
 public class Event {
 
     /**
      * This is a sample web service operation
      */
-    @WebMethod(operationName = "hello")
-    public String hello(@WebParam(name = "name") String txt) {
-        return "Hello " + txt + " !";
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    @Path("/measurement")
+    public String hello(
+        @QueryParam("name") String name) {
+        return "Hello " + name + " !";
     }
 }
